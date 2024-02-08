@@ -1,12 +1,12 @@
 from moviepy.editor import VideoFileClip, AudioFileClip, concatenate_videoclips, TextClip, CompositeVideoClip
 
 # 動画1の読み込み
-clip1 = VideoFileClip('sns-movie1.mp4')
+clip1 = VideoFileClip('movie1.mp4')
 # 20秒までの範囲を切り出す
 clip1_20s = clip1.subclip(0, 20)
 
 # 動画2の読み込み
-clip2 = VideoFileClip('sns-movie2.mp4')
+clip2 = VideoFileClip('movie2.mp4')
 
 # クロスディゾルブの時間設定
 crossfade_duration = 2.0
@@ -18,7 +18,7 @@ clip1_end = clip1_20s.fadeout(crossfade_duration)
 clip2_start = clip2.fadein(crossfade_duration)
 
 # BGMの読み込み
-bgm = AudioFileClip('sns-bgm.mp3')
+bgm = AudioFileClip('bgm.mp3')
 # BGMをトリミング
 bgm_trimmed = bgm.subclip(0, 30)
 
@@ -39,7 +39,6 @@ final_clip = concatenate_videoclips([clip1_end, clip2_start])
 final_clip = final_clip.fadein(fade_duration).fadeout(fade_duration)
 
 # テキストの作成
-font_family = '/Users/nipa/Library/Fonts/ROLAchan-Regular.otf'  # フォントのファミリー名を指定
 text_clip = TextClip('MOVIE-SNS', fontsize=40, color='#ebebeb', bg_color='#2b2b2b', size=(final_clip.w, 120), font=font_family)
 # フェードインを適用
 text_clip = text_clip.set_position(('center', 'center')).set_start(10).set_duration(10)  # 10秒目から5秒間表示
